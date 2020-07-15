@@ -30,14 +30,15 @@ def getPost(name, post_id):
 	return post
 
 def get(name):
-	post = getPostFromSoup(name, getSoup('https://t.me/' + name))
+	soup = getSoup('https://t.me/' + name)
+	post = getPostFromSoup(name, soup)
 	if not post.title or 'Send Message' in str(
 		soup.find('a', class_='tgme_action_button_new')):
 		self.exist = False
 	return post
 
-def getReferers(post):
-	for name in post.getReferer():
+def yieldReferers(post):
+	for name in post.yieldRefers():
 		if get(name).exist:
 			yield name
 

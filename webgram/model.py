@@ -40,11 +40,11 @@ class Post(object): # can be a post or channel info wrap
 
 	def getIndex(self):
 		raw = []
-		if len(self.getLink()) > 0:
+		if len(self._getLinks()) > 0:
 			raw.append('hasLink')
 		if self.file:
 			raw.append('hasFile')
-		raw.append(_getIndex(self))
+		raw.append(self._getIndex())
 		return ' '.join(raw)
 
 	def getKey(self):
