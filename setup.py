@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="weiboo",
+    name="teleg",
     version="0.0.1",
     author="Yunzhi Gao",
     author_email="gaoyunzhi@gmail.com",
-    description="Plain txt DB",
+    description="Telegram Web Util",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/gaoyunzhi/weiboo",
+    url="https://github.com/gaoyunzhi/teleg",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

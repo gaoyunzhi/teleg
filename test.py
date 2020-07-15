@@ -1,21 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import weiboo
-import time
+import teleg
 
-def testSearch(key):
-	for url, card in weiboo.search(key):
-		print(url, weiboo.getCount(card))
-	with open('tmp.txt', 'w') as f:
-		f.write(str(weiboo.search(key)))
-
-def testSearchUser(key):
-	print(weiboo.searchUser(key))
-	time.sleep(10)
+def test():
+	print(teleg.get('dushufenxiang'))
+	print(teleg.getPosts('dushufenxiang', 200))
+	print(teleg.getPost('dushufenxiang_chat', 200))
 
 if __name__=='__main__':
-	testSearch('女权')
-	testSearch('6520732164')
-	testSearchUser('澎湃新闻')
-	testSearchUser('5044281310')
+	test()

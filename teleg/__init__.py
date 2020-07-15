@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-name = 'weiboo'
+name = 'teleg'
 import yaml
 import cached_url
 import urllib
