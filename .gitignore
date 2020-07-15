@@ -1,0 +1,8 @@
+*build*
+*dist*
+*tmp*
+*nohup*
+*pycache*
+*egg-info*
+tmp/*
+db/*
