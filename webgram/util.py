@@ -3,15 +3,23 @@
 
 from datetime import datetime
 
-def getText(item, cut=-1):
-	if not item:
-		return ''
-	result = ' '.join(item.text.strip().split())
-	return result[:cut]
+# not use telegram_util once, because that one mess up with markdown
+# also, this way reduce dependency
+def cutText(text, cut):
+	if len(text) <= cut + 3:
+		return text
+	return text[:cut] + '...'
 
-def getTime(item):
+def getText(*soups):
+	result = []
+	for soup in soups:
+		if soup:
+		result.append(' '.join(soup.text.strip().split()))
+	return ' '.join(result)
+
+def getTime(soup):
 	try:
-		return datetime.strptime(item.find('a', 
+		return datetime.strptime(soup.find('a', 
 			class_='tgme_widget_message_date').find('time')[
 			'datetime'][:-6], '%Y-%m-%dT%H:%M:%S').timestamp()
 	except:
@@ -21,3 +29,14 @@ def getPostId(soup):
 	post_link = soup.find('a', 
 		class_='tgme_widget_message_date')['href']
 	return int(post_link.split('/')[-1])
+
+def getForwardFrom(soup):
+	try:
+		result = item.find('a', class_=
+			'tgme_widget_message_forwarded_from_name')['href']
+		result = result.split('/')
+		int(result[-1])
+		return result[-2]
+	except:
+		...
+	
