@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 name = 'webgram'
-from .util import getPostId
-from .ssoup import getSoup
+from .ssoup import getSoup, getPostId
 from .model import Post, getPostFromSoup
 
 def _yieldPosts(name, soup):
@@ -12,6 +11,7 @@ def _yieldPosts(name, soup):
 	for sub_soup in soup.find_all('div', class_='tgme_widget_message_bubble'):
 		post = getPostFromSoup(name, sub_soup)
 		post.post_id = getPostId(sub_soup)
+		yield post
 
 def _getPostsSoup(name, post_id=None):
 	link = 'https://t.me/s/' + name

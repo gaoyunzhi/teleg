@@ -1,5 +1,5 @@
-from .ssoup import getField
-from .util import getTime, getForwardFrom, getText, cutText, getLinks
+from .ssoup import getField, getTime, getForwardFrom, getLinks
+from .util import getText, cutText
 
 class Post(object): # can be a post or channel info wrap
 	def __init__(self, channel):

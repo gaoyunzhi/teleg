@@ -10,10 +10,10 @@ def testPost(post):
 	print(list(webgram.yieldReferers(post)))
 
 def test():
-	testPost(webgram.get('dushufenxiang'))
+	# testPost(webgram.get('dushufenxiang'))
 	# [testPost(post) for post in webgram.getPosts('dushufenxiang', 200)]
-	# testPost(webgram.getPost('dushufenxiang_chat', 200))
-	# [testPost(post) for post in webgram.getPosts('dushufenxiang')]
+	# testPost(webgram.getPost('dushufenxiang_chat', 29130))
+	[testPost(post) for post in webgram.getPosts('dushufenxiang')]
 
 if __name__=='__main__':
 	test()
