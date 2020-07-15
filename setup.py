@@ -20,6 +20,7 @@ setuptools.setup(
     ],
     install_requires=[
         'cached_url',
+        'bs4',
     ],
     python_requires='>=3.0',
 )
