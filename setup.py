@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="teleg",
+    name="webgram",
     version="0.0.1",
     author="Yunzhi Gao",
     author_email="gaoyunzhi@gmail.com",
-    description="Telegram Web Util",
+    description="webgramram Web Util",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/gaoyunzhi/teleg",
+    url="https://github.com/gaoyunzhi/webgram",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

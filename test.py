@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import teleg
+import webgram
 
 def test():
-	print(teleg.get('dushufenxiang'))
-	print(teleg.getPosts('dushufenxiang', 200))
-	print(teleg.getPost('dushufenxiang_chat', 200))
+	print(webgram.get('dushufenxiang'))
+	print(webgram.getPosts('dushufenxiang', 200))
+	print(webgram.getPost('dushufenxiang_chat', 200))
 
 if __name__=='__main__':
 	test()
