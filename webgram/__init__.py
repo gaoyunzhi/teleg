@@ -27,6 +27,8 @@ def getPost(name, post_id):
 	soup = getSoup('https://t.me/%s/%d?embed=1' % (name, post_id))
 	post = getPostFromSoup(name, soup)
 	post.post_id = post_id
+	if not soup.find('div', class_='tgme_widget_message_bubble'):
+		post.exist = False
 	return post
 
 def get(name):
