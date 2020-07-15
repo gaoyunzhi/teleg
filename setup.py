@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="Yunzhi Gao",
     author_email="gaoyunzhi@gmail.com",
-    description="webgramram Web Util",
+    description="Telegram Web Util",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/gaoyunzhi/webgram",
