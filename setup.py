@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="weiboo",
-    version="0.0.6",
+    version="0.0.1",
     author="Yunzhi Gao",
     author_email="gaoyunzhi@gmail.com",
     description="Plain txt DB",
@@ -19,7 +19,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'pyyaml',
         'cached_url',
     ],
     python_requires='>=3.0',
