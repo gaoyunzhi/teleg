@@ -1,5 +1,5 @@
 from .ssoup import getField
-from .util import getTime, getForwardFrom, getText, cutText
+from .util import getTime, getForwardFrom, getText, cutText, getLinks
 
 class Post(object): # can be a post or channel info wrap
 	def __init__(self, channel):
@@ -7,18 +7,13 @@ class Post(object): # can be a post or channel info wrap
 		self.post_id = 0
 		self.exist = True
 
-	def _getLinks(self):
-		if not self.text:
-			return []
-		return [item['href'] for item in 
-			self.text.find_all('a') if 'href' in item]
-
 	def yieldRefers(self):
 		if self.forward_from:
 			yield self.forward_from
-		for link in self._getLinks():
+		soup = self.description if self.isChannel() else self.text
+		for link in getLinks(soup):
 			if 't.me' in link:
-				yield link.split('t.me')[-1].split('/')[0]
+				yield link.split('t.me')[-1].split('/')[1]
 
 	def isChannel(self):
 		return self.post_id == 0
@@ -40,7 +35,7 @@ class Post(object): # can be a post or channel info wrap
 
 	def getIndex(self):
 		raw = []
-		if len(self._getLinks()) > 0:
+		if len(getLinks(self.text)) > 0:
 			raw.append('hasLink')
 		if self.file:
 			raw.append('hasFile')

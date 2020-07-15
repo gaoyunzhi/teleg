@@ -34,7 +34,7 @@ def get(name):
 	post = getPostFromSoup(name, soup)
 	if not post.title or 'Send Message' in str(
 		soup.find('a', class_='tgme_action_button_new')):
-		self.exist = False
+		post.exist = False
 	return post
 
 def yieldReferers(post):

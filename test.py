@@ -11,9 +11,9 @@ def testPost(post):
 
 def test():
 	testPost(webgram.get('dushufenxiang'))
-	[testPost(post) for post in webgram.getPosts('dushufenxiang', 200)]
-	testPost(webgram.getPost('dushufenxiang_chat', 200))
-	[testPost(post) for post in webgram.getPosts('dushufenxiang')]
+	# [testPost(post) for post in webgram.getPosts('dushufenxiang', 200)]
+	# testPost(webgram.getPost('dushufenxiang_chat', 200))
+	# [testPost(post) for post in webgram.getPosts('dushufenxiang')]
 
 if __name__=='__main__':
 	test()

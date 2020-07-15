@@ -39,4 +39,10 @@ def getForwardFrom(soup):
 		return result[-2]
 	except:
 		...
+
+def getLinks(soup):
+	if not soup:
+		return []
+	return [item['href'] for item in 
+		soup.find_all('a') if item.get('href')]
 	
