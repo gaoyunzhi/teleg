@@ -14,7 +14,7 @@ def getText(*soups):
 	result = []
 	for soup in soups:
 		if soup:
-		result.append(' '.join(soup.text.strip().split()))
+			result.append(' '.join(soup.text.strip().split()))
 	return ' '.join(result)
 
 def getTime(soup):

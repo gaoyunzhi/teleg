@@ -1,7 +1,7 @@
-from .soup import getField, getText, cutText
-from .util import getTime, getForwardFrom
+from .soup import getField
+from .util import getTime, getForwardFrom, getText, cutText
 
-def Post(object): # can be a post or channel info wrap
+class Post(object): # can be a post or channel info wrap
 	def __init__(self, channel):
 		self.channel = channel
 		self.post_id = 0
@@ -34,7 +34,7 @@ def Post(object): # can be a post or channel info wrap
 		return cutText(self._getMaintext(), cut)
 
 	def _getIndex(self):
-		if self.isChannel()
+		if self.isChannel():
 			return getText(self.title, self.description)
 		return getText(self.file, self.link, self.preview, self.text)
 
@@ -51,9 +51,7 @@ def Post(object): # can be a post or channel info wrap
 		return '%s/%d' % (self.channel, self.post_id)
 
 	def __str__(self):
-		to_print = [('name')]
-		return 'name: %s, title: %s, exist: %s' % (
-			self.name, getText(self.title), str(self.exist)) 
+		return '%s: %s' % (self.getKey(), self.getMaintext())
 
 def getPostFromSoup(name, soup):
 	post = Post(name)
@@ -67,3 +65,4 @@ def getPostFromSoup(name, soup):
 	post.preview = getField(soup, 'link_preview_description')
 	post.time = getTime(soup)
 	post.forward_from = getForwardFrom(soup)
+	
