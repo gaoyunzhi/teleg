@@ -1,4 +1,4 @@
-from .soup import getField
+from .ssoup import getField
 from .util import getTime, getForwardFrom, getText, cutText
 
 class Post(object): # can be a post or channel info wrap
@@ -65,4 +65,5 @@ def getPostFromSoup(name, soup):
 	post.preview = getField(soup, 'link_preview_description')
 	post.time = getTime(soup)
 	post.forward_from = getForwardFrom(soup)
+	return post
 	

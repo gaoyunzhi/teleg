@@ -3,7 +3,7 @@
 
 name = 'webgram'
 from .util import getPostId
-from .soup import getSoup
+from .ssoup import getSoup
 from .model import Post, getPostFromSoup
 
 def _yieldPosts(name, soup):
