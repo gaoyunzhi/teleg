@@ -13,7 +13,9 @@ class Post(object): # can be a post or channel info wrap
 		soup = self.description if self.isChannel() else self.text
 		for link in getLinks(soup):
 			if 't.me' in link:
-				yield link.split('t.me')[-1].split('/')[1]
+				parts = link.split('t.me')[-1].split('/')
+				if len(parts) > 1:
+					yield parts[1]
 
 	def isChannel(self):
 		return self.post_id == 0
