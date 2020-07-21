@@ -31,6 +31,9 @@ class Post(object): # can be a post or channel info wrap
 		if not self.text or not self.link:
 			return getText(self.file, self.link, self.preview, self.text)
 		textLink = getText(self.text.find('a'))
+		if not textLink:
+			print('no textLink', self.getKey())
+			return getText(self.file, self.link, self.preview, self.text)
 		text = getText(self.text)
 		first_part = text.split(textLink)[0]
 		second_part = text[len(first_part):]
