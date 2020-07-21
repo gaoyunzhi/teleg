@@ -30,7 +30,10 @@ class Post(object): # can be a post or channel info wrap
 			return getText(self.title, self.description)
 		if not self.text or not self.link:
 			return getText(self.file, self.link, self.preview, self.text)
-		textLink = getText(self.text.find('a'))
+		for item in self.text.find_all('a'):
+			textLink = getText(item)
+			if textLink:
+				break
 		if not textLink:
 			return getText(self.file, self.link, self.preview, self.text)
 		text = getText(self.text)
