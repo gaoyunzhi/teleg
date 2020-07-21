@@ -1,5 +1,5 @@
 from .ssoup import getField, getTime, getForwardFrom, getLinks
-from .util import getText, cutText
+from .util import getText, cutText, textJoin
 
 class Post(object): # can be a post or channel info wrap
 	def __init__(self, channel):
@@ -20,20 +20,22 @@ class Post(object): # can be a post or channel info wrap
 	def isChannel(self):
 		return self.post_id == 0
 
-	def _getMaintext(self):
-		if self.isChannel():
-			return getText(self.title)
-		return getText(self.file, self.link, self.text)
-
 	def getMaintext(self, cut = 20, channel_cut = 15):
 		if self.isChannel():
-			cut = channel_cut
-		return cutText(self._getMaintext(), cut)
+			return cutText(getText(self.title), channel_cut)
+		return cutText(self._getIndex(), cut)
 
 	def _getIndex(self):
 		if self.isChannel():
 			return getText(self.title, self.description)
-		return getText(self.file, self.link, self.preview, self.text)
+		if not self.text or not self.link:
+			return getText(self.file, self.link, self.preview, self.text)
+		textLink = getText(self.text.find('a'))
+		text = getText(self.text)
+		first_part = text.split(textLink)[0]
+		second_part = text[len(first_part):]
+		return textJoin(getText(self.file), first_part, 
+			getText(self.link, self.preview), second_part)
 
 	def getIndex(self):
 		raw = []

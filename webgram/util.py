@@ -10,9 +10,14 @@ def cutText(text, cut):
 		return text
 	return text[:cut] + '...'
 
+def textJoin(*parts):
+	result = ' '.join(parts)
+	parts = [x for x in result.split() if x]
+	return ' '.join(parts)
+
 def getText(*soups):
 	result = []
 	for soup in soups:
 		if soup:
 			result.append(' '.join(soup.text.strip().split()))
-	return ' '.join(result)
+	return textJoin(*result)
