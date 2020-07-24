@@ -11,6 +11,7 @@ def _yieldPosts(name, soup):
 	for sub_soup in soup.find_all('div', class_='tgme_widget_message_bubble'):
 		post = getPostFromSoup(name, sub_soup)
 		try:
+			# in rare cases, tgme_widget_message_date field does no exist
 			post.post_id = getPostId(sub_soup)
 			yield post
 		except:
