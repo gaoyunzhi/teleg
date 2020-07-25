@@ -14,8 +14,8 @@ def testPost(post):
 def test():
 	# testPost(webgram.get('freedom_watch'))
 	# [testPost(post) for post in webgram.getPosts('dushufenxiang', 1142)]
-	# testPost(webgram.getPost('dushufenxiang', 1142))
-	testPost(webgram.getPosts('dushufenxiang', 1142)[2])
+	testPost(webgram.getPost('feminist_united', 3316))
+	# testPost(webgram.getPosts('feminist_united', 1142)[2])
 	# [testPost(post) for post in webgram.getPosts('freedom_watch')]
 
 if __name__=='__main__':

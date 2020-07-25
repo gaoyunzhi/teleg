@@ -29,7 +29,8 @@ class Post(object): # can be a post or channel info wrap
 		if self.isChannel():
 			return getText(self.title, self.description)
 		if not self.text or not self.link:
-			return getText(self.file, self.link, self.preview, self.text)
+			return getText(self.file, self.link, self.preview, 
+				self.text, self.poll)
 		textLink = None
 		for item in self.text.find_all('a'):
 			textLink = getText(item)
@@ -49,6 +50,8 @@ class Post(object): # can be a post or channel info wrap
 			raw.append('hasLink')
 		if self.file:
 			raw.append('hasFile')
+		if self.poll:
+			raw.append('hasPoll')
 		raw.append(self._getIndex())
 		return ' '.join(raw)
 
@@ -67,6 +70,7 @@ def getPostFromSoup(name, soup):
 	post.link = getField(soup, 'link_preview_title')
 	post.file = getField(soup, 'tgme_widget_message_document_title')
 	post.text = getField(soup, 'tgme_widget_message_text')
+	post.poll = getField(soup, 'tgme_widget_message_poll')
 	post.preview = getField(soup, 'link_preview_description')
 	post.time = getTime(soup)
 	post.forward_from = getForwardFrom(soup)
