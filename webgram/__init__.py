@@ -21,7 +21,8 @@ def _getPostsSoup(name, post_id=None):
 	link = 'https://t.me/s/' + name
 	if post_id:
 		link += '/' + str(post_id)
-	return getSoup(link, force_cache=(not post_id))
+
+	return getSoup(link, force_cache=post_id)
 
 def getPosts(name, post_id=None):
 	soup = _getPostsSoup(name, post_id = post_id)
