@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 def getSoup(url, force_cache=True):
-	return BeautifulSoup(cached_url.get(url, force_cache=True),
+	return BeautifulSoup(cached_url.get(url, force_cache=force_cache),
 		'html.parser')
 
 def getField(soup, *fields):
