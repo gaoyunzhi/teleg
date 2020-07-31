@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 def getSoup(url, force_cache=True):
-	print(force_cache)
 	return BeautifulSoup(cached_url.get(url, force_cache=force_cache),
 		'html.parser')
 
