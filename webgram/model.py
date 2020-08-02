@@ -1,6 +1,14 @@
 from .ssoup import getField, getTime, getForwardFrom, getLinks
 from .util import getText, cutText, textJoin
 
+def isValidName(candidate):
+	if len(candidate) > 40:
+		return False
+	for c in '?#=!%,.':
+		if c in parts[1]:
+			return False
+	return True
+
 class Post(object): # can be a post or channel info wrap
 	def __init__(self, channel):
 		self.channel = channel
@@ -14,8 +22,11 @@ class Post(object): # can be a post or channel info wrap
 		for link in getLinks(soup):
 			if 't.me' in link:
 				parts = link.split('t.me')[-1].split('/')
-				if len(parts) > 1:
-					yield parts[1]
+				if len(parts) <= 1:
+					continue
+				candidate = parts[1]
+				if isValidName(candidate):
+					yield candidate
 
 	def isChannel(self):
 		return self.post_id == 0
