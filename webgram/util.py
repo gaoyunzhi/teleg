@@ -19,5 +19,7 @@ def getText(*soups):
 	result = []
 	for soup in soups:
 		if soup:
-			result.append(' '.join(soup.text.strip().split()))
+			for br in soup.find_all("br"):
+				br.replace_with("\n")
+			result.append(soup.text)
 	return textJoin(*result)
