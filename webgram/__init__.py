@@ -17,15 +17,14 @@ def _yieldPosts(name, soup):
 		except:
 			...
 
-def _getPostsSoup(name, post_id, direction):
+def _getPostsSoup(name, post_id, direction, force_cache):
 	link = 'https://t.me/s/' + name
 	if post_id:
 		link += '?%s=%d' % (direction, post_id)
-	return getSoup(link, force_cache=post_id)
+	return getSoup(link, force_cache=force_cache or post_id)
 
-def getPosts(name, post_id=None, direction='after'):
-	soup = _getPostsSoup(name, post_id = post_id, 
-		direction = direction)
+def getPosts(name, post_id=None, direction='after', force_cache = False):
+	soup = _getPostsSoup(name, post_id, direction, force_cache)
 	return list(_yieldPosts(name, soup))
 
 def getPost(name, post_id):
