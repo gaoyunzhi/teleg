@@ -20,7 +20,7 @@ def _yieldPosts(name, soup):
 def _getPostsSoup(name, post_id, direction):
 	link = 'https://t.me/s/' + name
 	if post_id:
-		link += '/%s=%d' % (direction, post_id)
+		link += '?%s=%d' % (direction, post_id)
 	return getSoup(link, force_cache=post_id)
 
 def getPosts(name, post_id=None, direction='after'):
