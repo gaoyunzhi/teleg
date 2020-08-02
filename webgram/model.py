@@ -5,7 +5,7 @@ def isValidName(candidate):
 	if len(candidate) > 40:
 		return False
 	for c in '?#=!%,.':
-		if c in parts[1]:
+		if c in candidate:
 			return False
 	return True
 
