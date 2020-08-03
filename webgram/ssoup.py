@@ -40,4 +40,10 @@ def getLinks(soup):
 		return []
 	return [item['href'] for item in 
 		soup.find_all('a') if item.get('href')]
+
+def isGroup(soup):
+	if soup.find('div', class_='tgme_page_context_action'):
+		return False
+	return 'online</div>' in str(soup)
+	
 	

@@ -1,4 +1,4 @@
-from .ssoup import getField, getTime, getForwardFrom, getLinks
+from .ssoup import getField, getTime, getForwardFrom, getLinks, isGroup
 from .util import getText, cutText, textJoin
 
 def isValidName(candidate):
@@ -57,12 +57,16 @@ class Post(object): # can be a post or channel info wrap
 
 	def getIndex(self):
 		raw = []
-		if len(getLinks(self.text)) > 0:
-			raw.append('hasLink')
-		if self.file:
-			raw.append('hasFile')
-		if self.poll:
-			raw.append('hasPoll')
+		if self.isChannel():
+			if self.is_group:
+				raw.append('isGroup')
+		else:
+			if len(getLinks(self.text)) > 0:
+				raw.append('hasLink')
+			if self.file:
+				raw.append('hasFile')
+			if self.poll:
+				raw.append('hasPoll')
 		raw.append(self._getIndex())
 		return ' '.join(raw)
 
@@ -85,5 +89,6 @@ def getPostFromSoup(name, soup):
 	post.preview = getField(soup, 'link_preview_description')
 	post.time = getTime(soup)
 	post.forward_from = getForwardFrom(soup)
+	post.is_group = isGroup(soup)
 	return post
 	
