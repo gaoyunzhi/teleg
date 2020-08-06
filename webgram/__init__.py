@@ -6,8 +6,7 @@ from .ssoup import getSoup, getPostId
 from .model import Post, getPostFromSoup
 
 def _yieldPosts(name, soup):
-	post = getPostFromSoup(name, soup)
-	yield post
+	yield getPostFromSoup(name, soup)
 	for sub_soup in soup.find_all('div', class_='tgme_widget_message_bubble'):
 		post = getPostFromSoup(name, sub_soup)
 		try:

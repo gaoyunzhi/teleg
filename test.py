@@ -8,11 +8,7 @@ def testPost(post):
 	print()
 
 def test():
-	testPost(webgram.getPost('equality_and_rights', 6371))
-	testPost(webgram.getPosts('Pinwan', force_cache=True)[0])
-	testPost(webgram.getPosts('dushufenxiang_chat', force_cache=True)[0])
-	testPost(webgram.get('dushufenxiang_chat'))
-	testPost(webgram.get('dushufenxiang'))
+	testPost(webgram.get('AlbetaLabs'))
 
 if __name__=='__main__':
 	test()
