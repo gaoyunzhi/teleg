@@ -4,7 +4,7 @@
 import webgram
 
 def testPost(post):
-	print(post.getIndex())
+	print(post.text)
 	print()
 
 def test():
