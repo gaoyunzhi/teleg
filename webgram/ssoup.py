@@ -12,13 +12,25 @@ def getField(soup, *fields):
 		if result:
 			return result
 
-def getForwardFrom(soup):
+def getAField(soup, field):
 	try:
-		result = soup.find('a', class_=
-			'tgme_widget_message_forwarded_from_name')['href']
-		result = result.split('/')
-		int(result[-1])
-		return result[-2]
+		result = soup.find('a', class_=field)['href']
+		return result.split('/')
+	except:
+		...
+
+def getAuthor(soup):
+	pieces = getAField(soup, 'tgme_widget_message_author_name')
+	try:
+		return pieces[-1]
+	except:
+		...
+
+def getForwardFrom(soup):
+	pieces = getAField(soup, 'tgme_widget_message_forwarded_from_name')
+	try:
+		int(pieces[-1])
+		return pieces[-2]
 	except:
 		...
 

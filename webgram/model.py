@@ -1,4 +1,4 @@
-from .ssoup import getField, getTime, getForwardFrom, getLinks, isGroup
+from .ssoup import getField, getTime, getForwardFrom, getLinks, isGroup, getAuthor
 from .util import getText, cutText, textJoin
 
 def isValidName(candidate):
@@ -67,6 +67,10 @@ class Post(object): # can be a post or channel info wrap
 				raw.append('hasFile')
 			if self.poll:
 				raw.append('hasPoll')
+		if self.forward_from:
+			raw.append(self.forward_from)
+		if self.author:
+			raw.append(self.author)
 		raw.append(self._getIndex())
 		return ' '.join(raw)
 
@@ -89,6 +93,7 @@ def getPostFromSoup(name, soup):
 	post.preview = getField(soup, 'link_preview_description')
 	post.time = getTime(soup)
 	post.forward_from = getForwardFrom(soup)
+	post.author = getAuthor(soup)
 	post.is_group = isGroup(soup)
 	return post
 	
