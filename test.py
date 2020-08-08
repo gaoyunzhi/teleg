@@ -8,7 +8,7 @@ def testPost(post):
 	print()
 
 def test():
-	testPost(webgram.getPost('muddy_cat', 117))
+	[testPost(post) for post in webgram.getPosts('dushufenxiang')]
 
 if __name__=='__main__':
 	test()
