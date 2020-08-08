@@ -1,4 +1,4 @@
-from .ssoup import getField, getTime, getForwardFrom, getLinks, isGroup, getAuthor
+from .ssoup import getField, getTime, getForwardFrom, getLinks, isGroup, getAFieldSuffix
 from .util import getText, cutText, textJoin
 
 def isValidName(candidate):
@@ -67,12 +67,9 @@ class Post(object): # can be a post or channel info wrap
 				raw.append('hasFile')
 			if self.poll:
 				raw.append('hasPoll')
-		if self.forward_from:
-			raw.append(self.forward_from)
-		if self.author:
-			raw.append(self.author)
-		raw.append(self._getIndex())
-		return ' '.join(raw)
+		raw += [self.forward_from, self.author, self.reply, 
+			self.forward_author, self._getIndex()]
+		return ' '.join([x for x in raw if x])
 
 	def getKey(self):
 		return '%s/%d' % (self.channel, self.post_id)
@@ -86,6 +83,10 @@ def getPostFromSoup(name, soup):
 		'tgme_channel_info_header_title')
 	post.description = getField(soup, 'tgme_page_description',
 		'tgme_channel_info_description')
+	post.reply = getAFieldSuffix(soup, 'tgme_widget_message_reply')
+	reply_quote = soup.find('a', class_='tgme_widget_message_reply')
+	if reply_quote:
+		reply_quote.decompose()
 	post.link = getField(soup, 'link_preview_title')
 	post.file = getField(soup, 'tgme_widget_message_document_title')
 	post.text = getField(soup, 'tgme_widget_message_text')
@@ -93,7 +94,9 @@ def getPostFromSoup(name, soup):
 	post.preview = getField(soup, 'link_preview_description')
 	post.time = getTime(soup)
 	post.forward_from = getForwardFrom(soup)
-	post.author = getAuthor(soup)
+	post.author = getAFieldSuffix(soup, 'tgme_widget_message_author_name')
+	post.forward_author = getAFieldSuffix(soup, 
+		'tgme_widget_message_forwarded_from_name')
 	post.is_group = isGroup(soup)
 	return post
 	

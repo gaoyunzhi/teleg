@@ -19,8 +19,8 @@ def getAField(soup, field):
 	except:
 		...
 
-def getAuthor(soup):
-	pieces = getAField(soup, 'tgme_widget_message_author_name')
+def getAFieldSuffix(soup, field):
+	pieces = getAField(soup, field)
 	try:
 		return pieces[-1]
 	except:
