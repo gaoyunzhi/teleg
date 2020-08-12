@@ -74,11 +74,16 @@ class Post(object): # can be a post or channel info wrap
 	def getKey(self):
 		return '%s/%d' % (self.channel, self.post_id)
 
+	def yieldPhotos(self):
+		for item in self.soup.find_all('a', class_='tgme_widget_message_photo_wrap'):
+			yield item['style'].split("background-image:url('")[1].split("')")[0]
+
 	def __str__(self):
 		return '%s: %s' % (self.getKey(), self.getMaintext())
 
 def getPostFromSoup(name, soup):
 	post = Post(name)
+	post.soup = soup
 	post.title = getField(soup, 'tgme_page_title', 
 		'tgme_channel_info_header_title')
 	post.description = getField(soup, 'tgme_page_description',
