@@ -9,9 +9,7 @@ def testPost(post):
 		print(index + '\n')
 
 def test():
-	# [testPost(post) for post in webgram.getPosts('muddycat', 67, direction='after')]
-	for post_id in range(107900, 107941):
-		testPost(webgram.getPost('Teahouse2nd', post_id))
+	[testPost(post) for post in webgram.getPosts('douban_read')]
 
 if __name__=='__main__':
 	test()
