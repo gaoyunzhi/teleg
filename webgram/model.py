@@ -68,7 +68,8 @@ class Post(object): # can be a post or channel info wrap
 			if self.poll:
 				raw.append('hasPoll')
 		raw += [self.forward_from, self.author, self.reply, 
-			self.forward_author, self._getIndex()]
+			self.forward_author, getText(self.author_field), 
+			self._getIndex()]
 		return ' '.join([x for x in raw if x])
 
 	def getKey(self):
@@ -100,6 +101,7 @@ def getPostFromSoup(name, soup):
 	post.time = getTime(soup)
 	post.forward_from = getForwardFrom(soup)
 	post.author = getAFieldSuffix(soup, 'tgme_widget_message_author_name')
+	post.author_field = soup.find('span', 'tgme_widget_message_author_name')
 	post.forward_author = getAFieldSuffix(soup, 
 		'tgme_widget_message_forwarded_from_name')
 	post.is_group = isGroup(soup)
