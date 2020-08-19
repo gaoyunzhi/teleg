@@ -10,7 +10,7 @@ def testPost(post):
 
 def test():
 	# [testPost(post) for post in webgram.getPosts('douban_read')]
-	testPost(webgram.getPost('muddy_cat', 117))
+	testPost(webgram.getPost('freedom_watch', 2724))
 
 if __name__=='__main__':
 	test()

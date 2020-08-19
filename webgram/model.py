@@ -67,6 +67,8 @@ class Post(object): # can be a post or channel info wrap
 				raw.append('hasFile')
 			if self.poll:
 				raw.append('hasPoll')
+			if self.author or getText(self.author_field):
+				raw.append('hasAuthor')
 		raw += [self.forward_from, self.author, self.reply, 
 			self.forward_author, getText(self.author_field), 
 			self._getIndex()]
