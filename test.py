@@ -7,8 +7,7 @@ def testPost(post):
 	print(post.getAuthor())
 
 def test():
-	for post_id in range(41991, 41992):
-		testPost(webgram.getPost('douban_discuss', post_id))
+	testPost(webgram.get('MadLadMemes'))
 
 if __name__=='__main__':
 	test()
