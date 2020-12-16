@@ -9,6 +9,16 @@ def isValidName(candidate):
 			return False
 	return True
 
+def isValidUsername(candidate):
+	if not candidate:
+		return False
+	try:
+		int(candidate)
+		return False
+	except:
+		...
+	return isValidName(candidate)
+
 class Post(object): # can be a post or channel info wrap
 	def __init__(self, channel):
 		self.channel = channel
@@ -73,6 +83,16 @@ class Post(object): # can be a post or channel info wrap
 			self.forward_author, getText(self.author_field), 
 			self._getIndex()]
 		return ' '.join([x for x in raw if x])
+
+	def getAuthor(self):
+		usernames = [self.forward_author, self.author]
+		usernames = [item for item in usernames if isValidUsername(item)]
+		if usernames:
+			return usernames
+		author = getText(self.author_field)
+		if not author:
+			return []
+		return [author.replace(' ', '_')]
 
 	def getKey(self):
 		return '%s/%d' % (self.channel, self.post_id)

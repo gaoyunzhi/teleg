@@ -4,13 +4,11 @@
 import webgram
 
 def testPost(post):
-	index = post.getIndex()
-	if index:
-		print(index + '\n')
+	print(post.getAuthor())
 
 def test():
-	# [testPost(post) for post in webgram.getPosts('douban_read')]
-	testPost(webgram.getPost('freedom_watch', 2724))
+	for post_id in range(41991, 41992):
+		testPost(webgram.getPost('douban_discuss', post_id))
 
 if __name__=='__main__':
 	test()
