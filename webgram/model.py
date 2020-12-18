@@ -101,6 +101,12 @@ class Post(object): # can be a post or channel info wrap
 		for item in self.soup.find_all('a', class_='tgme_widget_message_photo_wrap'):
 			yield item['style'].split("background-image:url('")[1].split("')")[0]
 
+	def getVideo(self):
+		video = self.soup.find('video')
+		if not video:
+			return ''
+		return video.get('src', '')
+
 	def __str__(self):
 		return '%s: %s' % (self.getKey(), self.getMaintext())
 

@@ -3,11 +3,8 @@
 
 import webgram
 
-def testPost(post):
-	print(post.getAuthor())
-
 def test():
-	testPost(webgram.get('MadLadMemes'))
+	print(webgram.getPost('douban_read', 38353).getVideo())
 
 if __name__=='__main__':
 	test()
